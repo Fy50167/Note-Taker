@@ -32,12 +32,15 @@ app.post('/api/notes', (req, res) => {
   const newNote = {
     title,
     text,
-    note_id: uuid()
+    id: uuid()
   }
   reviews.push(newNote);
   fs.writeFile('./db/db.json', JSON.stringify(reviews, 0, 4), (err) =>
       err ? console.log(err) : console.log('Successfully saved new note!')
     );
+    const notes = res.json(reviews);
+    return notes
+  
 })
 
 
